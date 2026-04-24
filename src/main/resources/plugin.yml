@@ -1,0 +1,14 @@
+name: StatsRank
+version: 1.0.0
+main: de.julia.statsrank.StatsRankPlugin
+api-version: '1.20'
+author: Julia
+description: Zeigt Stats wie Kills, Deaths und abgebaute Bloecke an und vergibt Raenge.
+commands:
+  stats:
+    description: Zeigt deine Stats oder die eines anderen Spielers an.
+    usage: /stats [spieler]
+    permission: statsrank.use
+permissions:
+  statsrank.use:
+    default: true

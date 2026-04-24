@@ -1,0 +1,20 @@
+ranks:
+  - threshold: 0
+    name: '&7Neuling'
+  - threshold: 75
+    name: '&aSammler'
+  - threshold: 200
+    name: '&bKaempfer'
+  - threshold: 450
+    name: '&dVeteran'
+  - threshold: 800
+    name: '&6Legende'
+
+score:
+  kills: 10
+  deaths: -3
+  broken-blocks: 1
+  placed-blocks: 1
+
+display:
+  blocks-per-point: 50
