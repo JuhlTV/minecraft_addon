@@ -20,14 +20,28 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Detect Maven module path
+        id: module
+        run: |
+          if [ -f "pom.xml" ] && [ -f "mvnw" ]; then
+            echo "dir=." >> "$GITHUB_OUTPUT"
+          elif [ -f "minecraft_addon/pom.xml" ] && [ -f "minecraft_addon/mvnw" ]; then
+            echo "dir=minecraft_addon" >> "$GITHUB_OUTPUT"
+          else
+            echo "No supported Maven module layout found."
+            exit 1
+          fi
+
       - name: Make mvnw executable
+        working-directory: ${{ steps.module.outputs.dir }}
         run: chmod +x mvnw
 
       - name: Build plugin
-        run: ./mvnw -B clean package
+        working-directory: ${{ steps.module.outputs.dir }}
+        run: ./mvnw -B -f pom.xml clean package
 
       - name: Upload jar artifact
         uses: actions/upload-artifact@v4
         with:
           name: statsrank-jar
-          path: target/*.jar
+          path: ${{ steps.module.outputs.dir }}/target/*.jar
