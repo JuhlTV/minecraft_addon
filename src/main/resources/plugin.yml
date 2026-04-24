@@ -9,6 +9,14 @@ commands:
     description: Zeigt deine Stats oder die eines anderen Spielers an.
     usage: /stats [spieler]
     permission: statsrank.use
+  topstats:
+    description: Zeigt die Topliste nach Punkten an.
+    usage: /topstats
+    permission: statsrank.use
+  statsgui:
+    description: Oeffnet eine GUI mit deinen Stats.
+    usage: /statsgui
+    permission: statsrank.use
 permissions:
   statsrank.use:
     default: true

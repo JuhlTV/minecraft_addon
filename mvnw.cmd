@@ -5,7 +5,7 @@ set "SCRIPT_DIR=%~dp0"
 set "WRAPPER_DIR=%SCRIPT_DIR%.mvn\wrapper"
 set "PROPERTIES_FILE=%WRAPPER_DIR%\maven-wrapper.properties"
 
-for /f "tokens=1,* delims==" %%A in (%PROPERTIES_FILE%) do (
+for /f "tokens=1,* delims==" %%A in ('type "%PROPERTIES_FILE%"') do (
     if /I "%%A"=="mavenVersion" set "MAVEN_VERSION=%%B"
     if /I "%%A"=="distributionUrl" set "DISTRIBUTION_URL=%%B"
 )

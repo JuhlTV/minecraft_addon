@@ -23,8 +23,12 @@ public final class StatsRankPlugin extends JavaPlugin {
         StatsCommand statsCommand = new StatsCommand(statsStorage, rankService);
         Objects.requireNonNull(getCommand("stats"), "stats command missing in plugin.yml").setExecutor(statsCommand);
         Objects.requireNonNull(getCommand("stats"), "stats command missing in plugin.yml").setTabCompleter(statsCommand);
+        Objects.requireNonNull(getCommand("topstats"), "topstats command missing in plugin.yml").setExecutor(new TopStatsCommand(statsStorage, rankService));
+        Objects.requireNonNull(getCommand("statsgui"), "statsgui command missing in plugin.yml").setExecutor(new StatsGuiCommand(statsStorage, rankService));
 
         getServer().getPluginManager().registerEvents(new StatsListener(this, statsStorage), this);
+        getServer().getPluginManager().registerEvents(new StatsGuiListener(), this);
+        getServer().getPluginManager().registerEvents(new ChatPrefixListener(this, statsStorage, rankService), this);
         getServer().getScheduler().runTaskTimer(this, statsStorage::save, 6000L, 6000L);
 
         for (Player player : getServer().getOnlinePlayers()) {

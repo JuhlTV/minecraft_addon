@@ -2,6 +2,7 @@ package de.julia.statsrank;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -45,6 +46,10 @@ public final class StatsStorage {
 
     public PlayerStats getOrCreate(UUID uniqueId) {
         return statsByPlayer.computeIfAbsent(uniqueId, ignored -> new PlayerStats());
+    }
+
+    public Map<UUID, PlayerStats> getAllStats() {
+        return Collections.unmodifiableMap(new HashMap<>(statsByPlayer));
     }
 
     public void save() {

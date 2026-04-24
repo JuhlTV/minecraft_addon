@@ -20,6 +20,9 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Make mvnw executable
+        run: chmod +x mvnw
+
       - name: Build plugin
         run: ./mvnw -B clean package
 
@@ -27,4 +30,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: statsrank-jar
-          path: target/statsrank-1.0.0.jar
+          path: target/*.jar
